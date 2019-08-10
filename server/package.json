@@ -7,5 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Evan Hunzinger",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bookshelf": "^0.15.1",
+    "express": "^4.17.1",
+    "knex": "^0.19.1",
+    "pg": "^7.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
 }
