@@ -1,7 +1,9 @@
+const { Model } = require('objection');
 const knex = require('knex')(require('../knexfile'));
-const bookshelf = require('bookshelf')(knex); // eslint-disable-line import/order
+
+Model.knex(knex);
 
 module.exports = {
-  bookshelf,
+  Model,
   knex,
 };
