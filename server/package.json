@@ -9,6 +9,7 @@
   "author": "Evan Hunzinger",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "bookshelf": "^0.15.1",
     "express": "^4.17.1",
     "knex": "^0.19.1",
