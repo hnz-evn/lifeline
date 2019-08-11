@@ -49,7 +49,7 @@ const createUserTable = (knex) => {
 
 const createAccessTokenTable = (knex) => {
   return knex.schema.createTable('AccessToken', (table) => {
-    table.string('value', 88).unique().primary(); // 4*(n/3) chars to represent n bytes
+    table.string('value', 172).unique().primary();
     table.uuid('userId').references('id').inTable('User').onDelete('CASCADE')
       .notNullable();
     table.boolean('revoked').defaultTo(false).notNullable();
