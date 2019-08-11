@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const requestId = require('express-request-id');
-const { log, expressLogger } = require('./common/logger');
+const { log, expressLogger } = require('./lib/logger');
 
 const app = express();
 const port = 3000;
