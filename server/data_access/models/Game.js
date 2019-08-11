@@ -6,7 +6,7 @@ class Game extends Model {
   }
 
   static get relationMappings() {
-    const User = require('./user');
+    const User = require('./User');
 
     return {
       users: {
