@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const requestId = require('express-request-id');
+const { extractBearerToken } = require('./lib/authorize');
 const { getJsFiles } = require('./lib/common');
 const { log, expressLogger } = require('./lib/logger');
 
@@ -10,6 +11,7 @@ const port = 3000;
 
 app.use(requestId());
 app.use(bodyParser.json());
+app.use(extractBearerToken());
 app.use(expressLogger());
 
 // Add helper response methods
