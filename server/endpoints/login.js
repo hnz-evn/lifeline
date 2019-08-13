@@ -18,7 +18,7 @@ const loginPassword = (req, res, next) => {
       const accessToken = {
         value: tokenGenerator.accessToken(),
         userId: user.id,
-        expirationTimestamp: DateTime.local().plus({ day: 1 }),
+        expirationTimestamp: DateTime.utc().plus({ day: 1 }),
       };
 
       return AccessToken.query().insert(accessToken);

@@ -1,3 +1,4 @@
+const { DateTime } = require('luxon');
 const { Model } = require('../common');
 
 class AccessToken extends Model {
@@ -7,6 +8,10 @@ class AccessToken extends Model {
 
   static get idColumn() {
     return 'value';
+  }
+
+  get isValid() {
+    return DateTime.fromJSDate(this.expirationTimestamp) > DateTime.utc();
   }
 
   static get relationMappings() {
