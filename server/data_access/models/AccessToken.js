@@ -17,7 +17,7 @@ class AccessToken extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: 'AccessToken.userid',
+          from: 'AccessToken.userId',
           to: 'User.id',
         },
       },
