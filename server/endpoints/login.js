@@ -11,9 +11,8 @@ const loginPassword = (req, res, next) => {
 
   return User.query().findOne({ email })
     .then((user) => {
-      if (!bcrypt.compareSync(password, user.password)) {
-        throw new Error('Invalid password');
-      }
+      if (!user) throw new Error('Unable to find user');
+      if (!bcrypt.compareSync(password, user.password)) throw new Error('Invalid password');
 
       const accessToken = {
         value: tokenGenerator.accessToken(),
