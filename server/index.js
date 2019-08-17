@@ -41,7 +41,7 @@ const endpointsReady = () => {
       files.forEach(registerRouter);
 
       // Non-error requests that got here requested an undefined resource
-      app.use((req, res, next) => next(new Error(`Unable to find ${req.originalUrl}.`)));
+      app.use((req, res, next) => next(new Error(`Unable to find [${req.method} ${req.originalUrl}].`)));
 
       // Error handler at then end of the middleware stack as a catch-all
       app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
