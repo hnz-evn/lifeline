@@ -24,6 +24,12 @@ const joinGame = (req, res, next) => {
     .catch(next);
 };
 
+const getGames = (req, res, next) => {
+  return Game.query()
+    .then(games => res.json(games))
+    .catch(next);
+};
+
 const getGame = (req, res, next) => {
   const { id } = req.params;
   return Game.query().where({ id }).eager('users').first()
@@ -34,6 +40,7 @@ const getGame = (req, res, next) => {
     .catch(next);
 };
 
+router.get('/', authorizeUser(), getGames);
 router.post('/', authorizeUser(), createGame);
 router.get('/:id', authorizeUser(), getGame);
 router.post('/:id/join', authorizeUser(), joinGame);
