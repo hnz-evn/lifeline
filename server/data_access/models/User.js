@@ -5,6 +5,10 @@ class User extends Model {
     return 'User';
   }
 
+  get hiddenFields() {
+    return ['password'];
+  }
+
   static get relationMappings() {
     const Game = require('./Game');
 
@@ -22,6 +26,13 @@ class User extends Model {
         },
       },
     };
+  }
+
+  // TODO: Implement this on base Model class
+  $formatJson(json, options) {
+    json = super.$formatJson(json, options);
+    this.hiddenFields.forEach(field => delete json[field]);
+    return json;
   }
 }
 
