@@ -24,7 +24,18 @@ const joinGame = (req, res, next) => {
     .catch(next);
 };
 
+const getGame = (req, res, next) => {
+  const { id } = req.params;
+  return Game.query().where({ id }).eager('users').first()
+    .then((game) => {
+      if (!game) throw new Error(`Game ${id} does not exist`);
+      return res.json(game);
+    })
+    .catch(next);
+};
+
 router.post('/', authorizeUser(), createGame);
+router.get('/:id', authorizeUser(), getGame);
 router.post('/:id/join', authorizeUser(), joinGame);
 
 module.exports = router;
