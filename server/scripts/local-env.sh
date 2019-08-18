@@ -4,3 +4,6 @@ docker run -d \
   -p 5432:5432 \
   --name lifeline-local-pg \
   postgres:9.6.9-alpine
+
+# Run DB wait and migrate script
+env $(cat config/local.env) node scripts/dbWaitAndMigrate.js
