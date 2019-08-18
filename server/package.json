@@ -4,6 +4,7 @@
   "description": "Server component of a distributed life counter app for \"Magic: the Gathering\"",
   "main": "index.js",
   "scripts": {
+    "local": "./scripts/local-env.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Evan Hunzinger",

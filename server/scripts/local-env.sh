@@ -1,3 +1,6 @@
+# Load environment variables from .env file
+export $(xargs < config/local.env)
+
 # Run `postgres` container in detached mode
 docker run -d \
   -e POSTGRES_DB=lifeline \
@@ -6,4 +9,7 @@ docker run -d \
   postgres:9.6.9-alpine
 
 # Run DB wait and migrate script
-env $(cat config/local.env) node scripts/dbWaitAndMigrate.js
+node scripts/dbWaitAndMigrate.js
+
+# Run app entrypoint within nodemon
+npx nodemon index.js
