@@ -17,6 +17,7 @@ class Game extends Model {
           through: {
             from: 'GameUser.gameId',
             to: 'GameUser.userId',
+            extra: ['lifeTotal'],
           },
           to: 'User.id',
         },

@@ -18,7 +18,8 @@ const joinGame = (req, res, next) => {
   return Game.query().where({ id }).first()
     .then((game) => {
       if (!game) throw new Error(`Game ${id} does not exist`);
-      return game.$relatedQuery('users').relate(req.user.id);
+      const newGameUser = { id: req.user.id, lifeTotal: game.defaultLife };
+      return game.$relatedQuery('users').relate(newGameUser);
     })
     .then(gameUser => res.json(gameUser))
     .catch(next);
