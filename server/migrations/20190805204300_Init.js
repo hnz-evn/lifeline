@@ -71,21 +71,13 @@ const createGameTable = (knex) => {
 
 const createGameUserTable = (knex) => {
   return knex.schema.createTable('GameUser', (table) => {
-    table.uuid('id').defaultTo(knex.raw('uuid_generate_v4()')).primary();
     table.uuid('userId').references('id').inTable('User').notNullable();
     table.uuid('gameId').references('id').inTable('Game').notNullable();
-    addTimestampFields(knex, table);
-  })
-    .then(() => addTimestampUpdateTrigger(knex, 'GameUser'));
-};
-
-const createGameUserStatTable = (knex) => {
-  return knex.schema.createTable('GameUserStat', (table) => {
-    table.uuid('gameUserId').references('id').inTable('GameUser').primary();
+    table.primary(['userId', 'gameId']);
     table.integer('lifeTotal').notNullable();
     addTimestampFields(knex, table);
   })
-    .then(() => addTimestampUpdateTrigger(knex, 'GameUserStat'));
+    .then(() => addTimestampUpdateTrigger(knex, 'GameUser'));
 };
 
 exports.up = (knex) => {
@@ -100,16 +92,14 @@ exports.up = (knex) => {
     .then(() => Promise.all([
       createGameUserTable(knex),
       createAccessTokenTable(knex),
-    ]))
-    .then(() => createGameUserStatTable(knex));
+    ]));
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTable('GameUserStat')
-    .then(() => Promise.all([
-      knex.schema.dropTable('AccessToken'),
-      knex.schema.dropTable('GameUser'),
-    ]))
+  return Promise.all([
+    knex.schema.dropTable('AccessToken'),
+    knex.schema.dropTable('GameUser'),
+  ])
     .then(() => Promise.all([
       knex.schema.dropTable('User'),
       knex.schema.dropTable('Game'),
