@@ -5,7 +5,7 @@ class User extends Model {
     return 'User';
   }
 
-  get hiddenFields() {
+  static get hiddenFields() {
     return ['password'];
   }
 
@@ -26,13 +26,6 @@ class User extends Model {
         },
       },
     };
-  }
-
-  // TODO: Implement this on base Model class
-  $formatJson(json, options) {
-    json = super.$formatJson(json, options);
-    this.hiddenFields.forEach(field => delete json[field]);
-    return json;
   }
 }
 
