@@ -4,6 +4,7 @@ const path = require('path');
 const requestId = require('express-request-id');
 const { extractBearerToken } = require('./lib/authorize');
 const { getJsFiles } = require('./lib/common');
+const { HttpError, NotFoundError } = require('./lib/httpError');
 const { log, expressLogger } = require('./lib/logger');
 
 const app = express();
@@ -41,16 +42,18 @@ const endpointsReady = () => {
       files.forEach(registerRouter);
 
       // Non-error requests that got here requested an undefined resource
-      app.use((req, res, next) => next(new Error(`Unable to find [${req.method} ${req.originalUrl}].`)));
+      app.use((req, res, next) => next(new NotFoundError(`Unable to find [${req.method} ${req.originalUrl}].`)));
 
       // Error handler at then end of the middleware stack as a catch-all
-      app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-        log.error(err);
+      app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
+        log.error(error.stack);
 
         if (typeof err === 'string') {
-          res.apiError(500, err);
+          res.apiError(500, error);
+        } else if (error instanceof HttpError) {
+          res.apiError(error.constructor.code, error.message);
         } else {
-          res.apiError(500, err.message);
+          res.apiError(500, error.message);
         }
       });
 
