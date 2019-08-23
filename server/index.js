@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const requestId = require('express-request-id');
+const { ValidationError } = require('express-validation');
 const { extractBearerToken } = require('./lib/authorize');
 const { getJsFiles } = require('./lib/common');
 const { HttpError, NotFoundError } = require('./lib/httpError');
@@ -48,8 +49,10 @@ const endpointsReady = () => {
       app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
         log.error(error.stack);
 
-        if (typeof err === 'string') {
+        if (typeof error === 'string') {
           res.apiError(500, error);
+        } else if (error instanceof ValidationError) {
+          res.status(error.status).json({ errors: error.errors });
         } else if (error instanceof HttpError) {
           res.apiError(error.constructor.code, error.message);
         } else {

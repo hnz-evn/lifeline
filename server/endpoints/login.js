@@ -1,12 +1,14 @@
 const bcrypt = require('bcrypt');
 const express = require('express');
 const { DateTime } = require('luxon');
+const validate = require('express-validation');
 const tokenGenerator = require('../lib/tokenGenerator');
 const { AccessToken, User } = require('../data_access/models');
+const schemas = require('../validation/schemas/login');
 
 const router = express.Router();
 
-const loginPassword = (req, res, next) => {
+const postLoginPassword = (req, res, next) => {
   const { email, password } = req.body;
 
   return User.query().findOne({ email })
@@ -26,6 +28,6 @@ const loginPassword = (req, res, next) => {
     .catch(next);
 };
 
-router.post('/', loginPassword);
+router.post('/', validate(schemas.postLoginPassword), postLoginPassword);
 
 module.exports = router;
