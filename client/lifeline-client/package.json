@@ -1,6 +1,7 @@
 {
   "name": "lifeline-client",
   "version": "0.1.0",
+  "description": "Client component of a distributed life counter app for \"Magic: the Gathering\"",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
