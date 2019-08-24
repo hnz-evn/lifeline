@@ -47,7 +47,11 @@ const endpointsReady = () => {
 
       // Error handler at then end of the middleware stack as a catch-all
       app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
-        log.error(error.stack);
+        log.error(error);
+
+        if (error.stack) {
+          log.error(error.stack);
+        }
 
         if (typeof error === 'string') {
           res.apiError(500, error);
