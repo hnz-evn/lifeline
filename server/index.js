@@ -52,7 +52,7 @@ const endpointsReady = () => {
         if (typeof error === 'string') {
           res.apiError(500, error);
         } else if (error instanceof ValidationError) {
-          res.status(error.status).json({ errors: error.errors });
+          res.apiError(error.status, error.errors);
         } else if (error instanceof HttpError) {
           res.apiError(error.constructor.code, error.message);
         } else {
