@@ -27,5 +27,6 @@ export default {
 <style lang="scss" scoped>
 .button-container {
   margin-top: 2em;
+  text-align: center;
 }
 </style>

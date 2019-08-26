@@ -1,30 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
+  <div id="app" class="vbox">
+    <header>
+      <router-link to="/">Home</router-link>
+      <span>|</span>
       <router-link to="/login">Login</router-link>
-    </div>
-    <div class="container">
+    </header>
+    <div class="vbox main">
       <router-view/>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  text-align: center;
-  color: #2c3e50;
+html, body, #app {
   height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
-#nav {
-  padding: 30px;
+.vbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+header {
+  display: flex;
+  height: 5em;
+  align-items: center;
+  justify-content: center;
+
   a {
     font-weight: bold;
     color: #2c3e50;
+
     &.router-link-exact-active {
       color: #42b983;
     }
   }
+}
+
+.main {
+  flex: 1;
+  align-items: center;
 }
 </style>
