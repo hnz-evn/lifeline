@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-container">
     <div class="field">
       <label class="label">Email</label>
       <div class="control">
@@ -44,6 +44,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.login-container {
+  background-color: #f0f0f0;
+  padding: 1.25em;
+  border-radius: 0.5em;
+}
+
 .button-container {
   margin-top: 2em;
   text-align: center;

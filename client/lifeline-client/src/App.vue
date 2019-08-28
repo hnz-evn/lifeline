@@ -29,9 +29,10 @@ html, body, #app {
 
 header {
   display: flex;
-  height: 5em;
+  height: 4em;
   align-items: center;
   justify-content: center;
+  background-color: #9be0d7;
 
   a {
     font-weight: bold;
@@ -46,5 +47,6 @@ header {
 .main {
   flex: 1;
   align-items: center;
+  justify-content: center;
 }
 </style>
