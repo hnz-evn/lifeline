@@ -33,11 +33,18 @@ export default {
   methods: {
     submitLogin() {
       if (!this.email || !this.password) {
-        log.error('Must provide email and password');
+        this.$toasted.error('Must provide email and password');
         return;
       }
 
-      login({ email: this.email, password: this.password });
+      login({ email: this.email, password: this.password })
+        .then((result) => {
+          log.info(result);
+        })
+        .catch((error) => {
+          log.error(error);
+          this.$toasted.error('Error submitting username and password');
+        });
     },
   },
 };
