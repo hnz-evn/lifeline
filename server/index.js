@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 const path = require('path');
 const requestId = require('express-request-id');
@@ -15,6 +16,7 @@ app.use(requestId());
 app.use(bodyParser.json());
 app.use(extractBearerToken());
 app.use(expressLogger());
+app.use(cors());
 
 // Add helper response methods
 app.use((req, res, next) => {
