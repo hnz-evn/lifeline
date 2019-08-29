@@ -28,7 +28,7 @@ const makeGenericRequest = (path, { accessToken, additionalOptions } = {}) => {
     baseOptions.headers.Authorization = `Bearer ${accessToken}`;
   }
 
-  const url = `${process.env.LIFELINE_API}${path}`;
+  const url = `${process.env.VUE_APP_LIFELINE_API}${path}`;
   const options = Object.assign({}, baseOptions, additionalOptions);
 
   return fetch(url, options)
