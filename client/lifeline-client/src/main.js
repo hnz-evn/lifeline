@@ -7,10 +7,10 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
-Vue.config.productionTip = false;
 Vue.use(toasted);
 
-new Vue({
+// TODO: Should remove in the future...
+window.$APP = new Vue({
   router,
   store,
   render(func) { return func(App); },
