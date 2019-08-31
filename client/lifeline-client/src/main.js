@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Toasted from 'vue-toasted';
+import toasted from './plugins/toasted';
 import 'bulma/css/bulma.css';
 
 import App from './App.vue';
@@ -8,7 +8,7 @@ import store from './store';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
-Vue.use(Toasted);
+Vue.use(toasted);
 
 new Vue({
   router,
