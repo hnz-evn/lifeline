@@ -8,17 +8,17 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/login',
-      name: 'Login',
+      path: '/',
+      name: 'main',
       component() {
-        return import(/* webpackChunkName: "about" */ './views/Login.vue');
+        return import(/* webpackChunkName: "about" */ './views/Main.vue');
       },
     },
     {
-      path: '/',
-      name: 'Main',
+      path: '/login',
+      name: 'login',
       component() {
-        return import(/* webpackChunkName: "about" */ './views/Main.vue');
+        return import(/* webpackChunkName: "about" */ './views/Login.vue');
       },
     },
   ],
