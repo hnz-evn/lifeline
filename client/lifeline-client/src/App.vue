@@ -11,6 +11,20 @@
   </div>
 </template>
 
+<script>
+import log from './plugins/logger';
+
+export default {
+  name: 'App',
+  mounted() {
+    if (!this.$store.getters.isAuthenticated) {
+      log.info('No authentication found, navigating to login page...');
+      this.$router.push({ name: 'login' });
+    }
+  }
+};
+</script>
+
 <style lang="scss">
 html, body, #app {
   height: 100%;
