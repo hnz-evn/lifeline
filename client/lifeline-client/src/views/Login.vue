@@ -1,20 +1,22 @@
 <template>
   <div class="login-container">
-    <div class="field">
-      <label class="label">Email</label>
-      <div class="control">
-        <input class="input" type="email" placeholder="Email" v-model="email">
+    <form @submit.prevent="submitLogin">
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input class="input" type="email" placeholder="Email" v-model="email">
+        </div>
       </div>
-    </div>
-    <div class="field">
-      <label class="label">Password</label>
-      <div class="control">
-        <input class="input" type="password" placeholder="Password" v-model="password">
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input class="input" type="password" placeholder="Password" v-model="password">
+        </div>
       </div>
-    </div>
-    <div class="button-container">
-      <button class="button is-primary" @click="submitLogin">Submit</button>
-    </div>
+      <div class="button-container">
+        <button class="button is-primary" type="submit">Submit</button>
+      </div>
+    </form>
   </div>
 </template>
 
