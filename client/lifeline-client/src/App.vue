@@ -62,5 +62,6 @@ header {
   flex: 1;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
 }
 </style>
