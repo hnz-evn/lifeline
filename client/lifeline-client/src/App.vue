@@ -21,7 +21,7 @@ export default {
       log.info('No authentication found, navigating to login page...');
       this.$router.push({ name: 'login' });
     }
-  }
+  },
 };
 </script>
 

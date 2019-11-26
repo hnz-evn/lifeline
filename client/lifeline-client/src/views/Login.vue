@@ -42,7 +42,7 @@ export default {
       login({ email: this.email, password: this.password })
         .then((result) => {
           this.$store.commit('setAccessToken', { token: result.value });
-          localStorage.setItem('accessToken', result.value)
+          localStorage.setItem('accessToken', result.value);
           this.$toasted.global.success({ message: 'Successfully logged in!' });
           this.$router.push({ name: 'main' });
         })
