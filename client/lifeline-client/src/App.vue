@@ -1,9 +1,7 @@
 <template>
   <div id="app" class="vbox">
     <header>
-      <router-link to="/">Home</router-link>
-      <span>|</span>
-      <router-link to="/login">Login</router-link>
+      <span><font-awesome-icon icon="heartbeat"/> lifeline</span>
     </header>
     <div class="vbox main">
       <router-view/>
@@ -43,19 +41,13 @@ html, body, #app {
 
 header {
   display: flex;
-  height: 4em;
+  height: 3em;
   align-items: center;
   justify-content: center;
   background-color: #9be0d7;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #2c3e50;
 }
 
 .main {
