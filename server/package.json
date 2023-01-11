@@ -17,7 +17,7 @@
     "express-request-id": "^1.4.1",
     "express-validation": "^1.0.2",
     "joi": "^14.3.1",
-    "knex": "^0.19.1",
+    "knex": "^2.4.0",
     "luxon": "^1.17.2",
     "objection": "^1.6.9",
     "pg": "^7.12.0",
